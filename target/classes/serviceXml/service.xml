@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--目前支持一个接口-->
+<interfaces>
+    <interface id="interface1" fullClassName="com.sxx.service.UserService">
+        <impl id="impl1" name="UserServiceImpl">com.sxx.service.impl.UserServiceImpl</impl>
+    </interface>
+</interfaces>
