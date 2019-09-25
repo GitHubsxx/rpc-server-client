@@ -16,7 +16,14 @@ public class ClientApp {
         ServerDto dto = FileUtil.readProperties();
         ServerDto dto1 = FileUtil.readXMLByDom4j();
         ClientProxy clientProxy = new ClientProxy(dto.getHost(), dto.getPort());
-        UserService service = (UserService) clientProxy.getService(UserService.class,dto1.getImplFullName());
+        Class<?> interClass = null;
+        try {
+            interClass = Class.forName(dto1.getInterfaceFullName());
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        UserService service = (UserService) clientProxy.getService(interClass,dto1.getImplFullName());
         UserDto user = service.getUser(0L);
         System.out.print("name:"+user.getUserName()+","+"sex:"+user.getSex()+","+"age:"+user.getAge());
     }
